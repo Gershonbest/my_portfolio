@@ -1,120 +1,186 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Section from './Section';
-import type { Project } from '../types';
+import { TechList } from './TechTag';
+import type { Project, ProjectCategory } from '../types';
 
 const projectsData: Project[] = [
   {
-    title: 'AI Call Analytics Platform',
-    technologies: 'Python, LangChain, AWS SageMaker, PostgreSQL, FastAPI, Model Serving',
-    description: 'Enterprise call transcription system with real-time sentiment analysis. Processes 1000+ hours of audio daily with 95% accuracy. Deployed production-grade inference pipeline with automated monitoring.',
-    repoUrl: 'https://github.com/Gershonbest',
-    liveDemoUrl: '#',
-    imageUrl: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=400&auto=format&fit=crop',
+    title: 'Orheo',
+    technologies: 'LangGraph, FastAPI, WhatsApp, Paystack, Neon Postgres, Redis, S3, Docker',
+    description: 'AI-powered appointment platform for service businesses across Africa. WhatsApp-first booking with a multi-agent backend, Paystack tenant settlement, and multi-tenant infrastructure.',
+    liveDemoUrl: 'https://www.orheo.com',
+    category: 'Venture',
   },
   {
-    title: 'VisaBot - RAG-Powered Advisory Agent',
+    title: 'DeepOCR',
+    technologies: 'Python, OCR',
+    description: 'Open-source Python package for OCR, published on PyPI.',
+    repoUrl: 'https://github.com/Gershonbest/deep-ocr',
+    // TODO: add the PyPI URL
+    category: 'Open Source',
+  },
+  {
+    title: 'AI Call Analytics Platform',
+    technologies: 'Python, LangChain, AWS SageMaker, PostgreSQL, FastAPI',
+    description: 'Enterprise call transcription and analysis pipeline processing up to 1,000 hours of audio a day.',
+    // TODO: add a public repo URL if one exists
+    category: 'Production AI',
+  },
+  {
+    title: 'VisaBot — RAG Advisory Agent',
     technologies: 'LangGraph, Pinecone, Supabase, FastAPI, LlamaIndex',
-    description: 'Intelligent visa consultation chatbot with multi-stage interaction modeling and document generation. Implemented hybrid search with semantic re-ranking for optimal information retrieval.',
-    repoUrl: 'https://github.com/Gershonbest',
-    liveDemoUrl: '#',
-    imageUrl: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=400&auto=format&fit=crop',
+    description: 'Visa consultation chatbot with multi-stage interaction modeling, document generation, and hybrid search with semantic re-ranking.',
+    // TODO: add a public repo URL if one exists
+    category: 'Agents',
   },
   {
     title: 'Skincare AI Agent',
-    technologies: 'OpenAI Vision API, FastAPI, Streamlit, Model Serving',
-    description: 'Facial analysis system with AI-driven skincare recommendations and dermatologist routing. Built scalable backend service for real-time inference.',
-    repoUrl: 'https://github.com/Gershonbest',
-    imageUrl: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=400&auto=format&fit=crop',
+    technologies: 'OpenAI Vision API, FastAPI, Streamlit',
+    description: 'Facial analysis system with AI-driven skincare recommendations and dermatologist routing, served through a real-time inference backend.',
+    // TODO: add a public repo URL if one exists
+    category: 'Agents',
   },
   {
     title: 'Bible Study AI Companion',
-    technologies: 'LangGraph, ChromaDB, LangChain, MCP Servers, WhatsApp Integration',
-    description: 'Multi-agent system for contextual Bible study with semantic search capabilities. Dynamic content generation and interactive Q&A functionality using MCP protocol for enhanced context management.',
-    repoUrl: 'https://github.com/Gershonbest',
-    imageUrl: 'https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=400&auto=format&fit=crop',
+    technologies: 'LangGraph, ChromaDB, LangChain, MCP, WhatsApp',
+    description: 'Multi-agent system for contextual Bible study with semantic search, interactive Q&A, and MCP-based context management.',
+    // TODO: add a public repo URL if one exists
+    category: 'Agents',
   },
   {
-    title: 'Phonenix AI TelephonyVoice Agent',
+    title: 'CepsAI',
     technologies: 'LiveKit, FastAPI, OpenAI Realtime API, WebRTC, Twilio',
-    description: 'Real-time voice telephony agent framework for natural conversational experiences with low-latency audio processing and streaming responses.',
-    repoUrl: 'https://github.com/Gershonbest',
-    liveDemoUrl: 'https://www.phonenix.ai',
-    imageUrl: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=400&auto=format&fit=crop',
+    description: 'Real-time voice telephony agent for natural conversations, with low-latency audio processing and streaming responses.',
+    liveDemoUrl: 'https://phonenix-api.vercel.app/',
+    // TODO: add a public repo URL if one exists
+    category: 'Agents',
   },
-  // {
-  //   title: 'Phonenix AI TelephonyVoice Agent',
-  //   technologies: 'FastAPI, Twilio, OpenAI, PostgreSQL, Docker, Kubernetes',
-  //   description: 'Real-time voice telephony agent framework for natural conversational experiences with low-latency audio processing and streaming responses.',
-  //   repoUrl: 'https://github.com/Gershonbest',
-  //   liveDemoUrl: '#',
-  //   imageUrl: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=400&auto=format&fit=crop',
-  // },
+  {
+    title: 'Whisper GPU Transcription Worker',
+    technologies: 'Whisper, Pyannote, FastAPI, Redis, Docker, RunPod',
+    description: 'Queue-driven GPU worker for multilingual transcription with speaker diarization and translation, designed for RunPod.',
+    repoUrl: 'https://github.com/Gershonbest/whisper_runpod_exp',
+    category: 'Production AI',
+  },
+  {
+    title: 'Ray Serve Multi-Model Inference',
+    technologies: 'Ray Serve, FastAPI, Transformers, PyTorch, Docker',
+    description: 'Gateway that routes requests to independently scaled model deployments, with a registry for plugging in new models.',
+    repoUrl: 'https://github.com/Gershonbest/ml-inference',
+    category: 'Open Source',
+  },
+  {
+    title: 'vLLM Inference Server',
+    technologies: 'vLLM, FastAPI, Prometheus, Docker',
+    description: 'High-throughput LLM serving with OpenAI-compatible endpoints, tensor parallelism, and Prometheus metrics.',
+    repoUrl: 'https://github.com/Gershonbest/vllm-inference',
+    category: 'Open Source',
+  },
+  {
+    title: 'GPU LLM Serving on Kubernetes',
+    technologies: 'Triton, vLLM, Kubernetes, AWS EKS, Grafana, Prometheus',
+    description: 'LLM serving architecture combining Triton and vLLM batching, Kubernetes autoscaling, and Grafana dashboards. In active development.',
+    repoUrl: 'https://github.com/Gershonbest/llm-inference',
+    category: 'Production AI',
+  },
+  {
+    title: 'Ollama Inference on Hugging Face Spaces',
+    technologies: 'Ollama, Docker, Hugging Face Spaces, RAG',
+    description: 'Dockerized Ollama API server that preloads an embedding model and a RAG-tuned language model on startup.',
+    repoUrl: 'https://github.com/Gershonbest/ollama-inference',
+    category: 'Open Source',
+  },
+  {
+    title: 'ArxivExplorer MCP Server',
+    technologies: 'MCP, FastMCP, Tavily, Python',
+    description: 'MCP server that lets AI assistants search ArXiv papers, with a curated topic list and a prompt template for systematic exploration.',
+    repoUrl: 'https://github.com/Gershonbest/mcp-lite',
+    category: 'Open Source',
+  },
+  {
+    title: 'WhatsApp AI Agent',
+    technologies: 'LangGraph, Pydantic AI, FastAPI, PostgreSQL, OpenAI',
+    description: 'Conversational agent backend for WhatsApp, with Postgres-backed conversation state, web search, and Logfire observability.',
+    repoUrl: 'https://github.com/Gershonbest/whatsapp_agent',
+    category: 'Agents',
+  },
+  {
+    title: 'PropertyAI',
+    technologies: 'LangGraph, Pydantic AI, FastAPI, Supabase, PGVector, WhatsApp',
+    description: 'Multi-agent real estate assistant over WhatsApp, with eight specialized agents for search, scheduling, market analysis, and FAQs.',
+    repoUrl: 'https://github.com/Gershonbest/whatsapp',
+    category: 'Agents',
+  },
 ];
 
-const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" {...props}>
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-    </svg>
-);
-
-const ExternalLinkIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
-        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-    </svg>
-);
+const filters: Array<'All' | ProjectCategory> = ['All', 'Venture', 'Production AI', 'Open Source', 'Agents'];
 
 const ProjectCard: React.FC<{ item: Project }> = ({ item }) => (
-    <li className="mb-12">
-        <a href={item.liveDemoUrl || item.repoUrl || '#'} target="_blank" rel="noreferrer noopener" className="block group">
-            <div className="grid gap-4 sm:grid-cols-8 sm:gap-8 md:gap-4 p-6 rounded-lg border border-zinc-800 bg-zinc-900/40 group-hover:border-sky-300 transition-colors duration-300">
-                {item.imageUrl && (
-                    <div className="sm:col-span-2">
-                        <div className="rounded-md border-2 border-zinc-700/50 overflow-hidden">
-                            <img alt={`${item.title} project thumbnail`} loading="lazy" decoding="async" className="w-full h-auto object-cover transition duration-300 group-hover:scale-105" src={item.imageUrl} />
-                        </div>
-                    </div>
-                )}
-                <div className={`z-10 ${item.imageUrl ? 'sm:col-span-6' : 'sm:col-span-8'}`}>
-                    <h3 className="font-medium leading-snug text-zinc-200 group-hover:text-sky-300 transition-colors duration-300">
-                        <span>{item.title}</span>
-                    </h3>
-                    <p className="mt-2 text-sm leading-normal">{item.description}</p>
-                    <div className="relative z-10 mt-2 flex items-center space-x-4">
-                        {item.repoUrl && (
-                            <a href={item.repoUrl} target="_blank" rel="noreferrer noopener" aria-label={`${item.title} repository`} className="block text-zinc-400 hover:text-sky-300">
-                                <span className="sr-only">Repository</span>
-                                <GithubIcon className="h-5 w-5" />
-                            </a>
-                        )}
-                        {item.liveDemoUrl && (
-                            <a href={item.liveDemoUrl} target="_blank" rel="noreferrer noopener" aria-label={`${item.title} live demo`} className="block text-zinc-400 hover:text-sky-300">
-                                <span className="sr-only">Live Demo</span>
-                                <ExternalLinkIcon className="h-5 w-5" />
-                            </a>
-                        )}
-                    </div>
-                    <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
-                        {item.technologies.split(', ').map((tech) => (
-                            <li key={tech} className="mr-1.5 mt-2">
-                                <div className="flex items-center rounded-full bg-sky-400/10 px-3 py-1 text-xs font-medium leading-5 text-sky-300">{tech}</div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </a>
-    </li>
+  <article className="border-t border-line py-7">
+    <p className="text-sm text-muted">{item.category}</p>
+    <h3 className="mt-1 font-display text-xl font-medium text-ink">{item.title}</h3>
+    <p className="mt-2 text-[15px] leading-7">{item.description}</p>
+    <div className="mt-4">
+      <TechList items={item.technologies.split(', ')} />
+    </div>
+    {(item.repoUrl || item.liveDemoUrl) && (
+      <div className="mt-4 flex gap-4 text-sm">
+        {item.repoUrl && (
+          <a
+            href={item.repoUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-accent hover:text-ink"
+          >
+            Code
+          </a>
+        )}
+        {item.liveDemoUrl && (
+          <a
+            href={item.liveDemoUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-accent hover:text-ink"
+          >
+            Live
+          </a>
+        )}
+      </div>
+    )}
+  </article>
 );
 
 const Projects: React.FC = () => {
+  const [filter, setFilter] = useState<'All' | ProjectCategory>('All');
+  const visible = filter === 'All' ? projectsData : projectsData.filter((project) => project.category === filter);
+
   return (
     <Section id="projects" title="Projects">
-      <ul>
-        {projectsData.map((project, index) => (
-          <ProjectCard key={index} item={project} />
+      <div className="mb-2 flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filter projects by category">
+        {filters.map((item) => {
+          const active = filter === item;
+          return (
+            <button
+              key={item}
+              type="button"
+              aria-pressed={active}
+              onClick={() => setFilter(item)}
+              className={`border-b pb-1 text-sm ${
+                active
+                  ? 'border-accent text-ink'
+                  : 'border-transparent text-muted hover:text-ink'
+              }`}
+            >
+              {item}
+            </button>
+          );
+        })}
+      </div>
+      <div className="grid sm:grid-cols-2 sm:gap-x-10">
+        {visible.map((project) => (
+          <ProjectCard key={project.title} item={project} />
         ))}
-      </ul>
+      </div>
     </Section>
   );
 };

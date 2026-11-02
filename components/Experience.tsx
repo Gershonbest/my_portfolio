@@ -4,59 +4,84 @@ import type { Experience } from '../types';
 
 const experienceData: Experience[] = [
   {
-    role: 'AI/ML Engineer',
-    company: 'MBL Hightech',
+    role: 'Co-founder & CTO',
+    company: 'Orheo',
     location: 'Abuja, Nigeria',
-    period: 'May 2023 – Present',
+    period: 'June 2026 – Present',
+    companyUrl: 'https://www.orheo.com',
     points: [
-      'Designed and deployed enterprise-grade call transcription system with 95% accuracy for customer-agent conversations.',
-      'Built sophisticated multi-agent systems using LangGraph and CrewAI for complex workflow orchestration.',
-      'Fine-tuned LLMs for domain-specific tasks, achieving 40% improvement in task accuracy.',
-      'Developed NLP pipelines for automated document extraction with 92% accuracy in entity recognition.',
-      'Architected RAG systems integrating vector databases (Supabase, Pinecone, ChromaDB), reducing query response time by 60%.',
-      'Implemented end-to-end model serving infrastructure with FastAPI, handling 10K+ requests daily.',
+      'Built the AI-powered appointment management platform for service businesses across Africa.',
+      'WhatsApp-first booking flows with a LangGraph multi-agent backend (FastAPI).',
+      'Paystack payments with tenant subaccount settlement.',
+      'Multi-tenant Postgres (Neon), Redis, and S3.',
+      'CI/CD with GitHub Actions and Docker, deployed on Render.',
     ],
   },
   {
     role: 'AI Research & Solutions',
-    company: 'Phonenix AI',
+    company: 'CepsAI',
     location: 'Abuja, Nigeria',
+    companyUrl: 'https://phonenix-api.vercel.app/',
+    // TODO: confirm whether CepsAI is still current ("Present") or has an end date
     period: 'May 2025 – Present',
     points: [
       'Built and trained AI models from scratch, including fine-tuning and quantization of language models for optimized deployment.',
       'Designed and deployed custom AI assistants for education, fintech, and healthcare sectors leveraging OpenAI APIs and fine-tuned language models.',
       'Architected intelligent chatbots with advanced semantic search using LlamaIndex and vector database integrations.',
-      'Developed real-time voice AI agents utilizing LiveKit framework for seamless conversational interfaces.',
-      'Engineered production-ready, scalable API solutions with FastAPI, implementing robust authentication and rate limiting mechanisms.',
+      'Developed real-time voice AI agents utilizing LiveKit for conversational interfaces.',
+      'Engineered production-ready API solutions with FastAPI, including authentication and rate limiting.',
+    ],
+  },
+  {
+    role: 'AI/ML Engineer',
+    company: 'MBL Hightech',
+    location: 'Abuja, Nigeria',
+    period: 'May 2023 – Sep 2026',
+    points: [
+      'Built an end-to-end, event-driven call transcription and analysis pipeline processing up to 1,000 call hours a day.',
+      'Built an end-to-end OCR document validation system for a financial CRM.',
+      'Built an AI voice agent telephony system for customer care calls.',
+      'Built a client similarity system and a multi-agent, role-based support agent system for CRM operations.',
+      'Designed and operated model-serving infrastructure (FastAPI, Docker, AWS) for these systems.',
     ],
   },
 ];
 
 const ExperienceCard: React.FC<{ item: Experience }> = ({ item }) => (
-    <a href="#" target="_blank" rel="noreferrer noopener" className="block p-6 rounded-lg border border-zinc-800 bg-zinc-900/40 hover:border-sky-300 transition-colors duration-300">
-        <div className="grid sm:grid-cols-8 sm:gap-4">
-            <header className="mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 sm:col-span-2" aria-label={item.period}>{item.period}</header>
-            <div className="sm:col-span-6">
-                <h3 className="font-medium leading-snug text-zinc-200">
-                    <span>{item.role} · <span className="inline-block">{item.company}</span></span>
-                </h3>
-                <ul className="mt-2 list-disc pl-5 space-y-2 text-sm text-zinc-400">
-                  {item.points.map((point, index) => (
-                    <li key={index}>{point}</li>
-                  ))}
-                </ul>
-            </div>
-        </div>
-    </a>
+  <article className="grid gap-2 border-t border-line py-8 first:border-t-0 first:pt-0 last:pb-0 sm:grid-cols-12 sm:gap-8">
+    <p className="text-sm text-muted sm:col-span-4">{item.period}</p>
+    <div className="sm:col-span-8">
+      <h3 className="text-base font-medium text-ink">
+        {item.role},{' '}
+        {item.companyUrl ? (
+          <a
+            href={item.companyUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-accent hover:text-ink"
+          >
+            {item.company}
+          </a>
+        ) : (
+          item.company
+        )}
+      </h3>
+      <p className="mt-1 text-sm">{item.location}</p>
+      <ul className="mt-3 space-y-2 text-[15px] leading-7">
+        {item.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+    </div>
+  </article>
 );
-
 
 const Experience: React.FC = () => {
   return (
     <Section id="experience" title="Experience">
-      <div className="flex flex-col gap-6">
-        {experienceData.map((item, index) => (
-          <ExperienceCard key={index} item={item} />
+      <div>
+        {experienceData.map((item) => (
+          <ExperienceCard key={`${item.company}-${item.role}`} item={item} />
         ))}
       </div>
     </Section>

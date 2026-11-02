@@ -1,0 +1,184 @@
+:root {
+  color-scheme: light;
+  --paper: #d4d5d6;
+  --surface: #e4e5e6;
+  --ink: #161616;
+  --muted: #4a4c4e;
+  --line: #b3b5b7;
+  --accent: #4a7c00;
+  --accent-hover: #3a6400;
+  --accent-fg: #f4ffe8;
+  --accent-soft: #d3e8a6;
+  --nvidia: #76b900;
+  --nvidia-ink: #0c1400;
+}
+
+html.dark {
+  color-scheme: dark;
+  --paper: #0c0c0c;
+  --surface: #161616;
+  --ink: #f0ebe4;
+  --muted: #a39c94;
+  --line: #2a2a2a;
+  --accent: #76b900;
+  --accent-hover: #8fd014;
+  --accent-fg: #0c1400;
+  --accent-soft: #24350a;
+  --nvidia: #76b900;
+  --nvidia-ink: #0c1400;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  color: var(--muted);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  background: var(--paper);
+}
+
+h1,
+h2,
+.font-display {
+  font-family: Outfit, system-ui, sans-serif;
+}
+
+.hero-shell {
+  position: relative;
+  overflow: hidden;
+  background: #070807;
+  color: #eef3ea;
+}
+
+.hero-shell::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -15%;
+  width: 75%;
+  height: 140%;
+  background: radial-gradient(ellipse at 55% 45%, rgba(118, 185, 0, 0.42), transparent 68%);
+  pointer-events: none;
+}
+
+.hero-slash {
+  position: absolute;
+  top: -25%;
+  right: 22%;
+  width: 7.5rem;
+  height: 150%;
+  background: linear-gradient(180deg, #9fe01a 0%, #76b900 38%, rgba(118, 185, 0, 0) 100%);
+  opacity: 0.8;
+  transform: rotate(28deg);
+  pointer-events: none;
+}
+
+.hero-slash-2 {
+  right: 32%;
+  width: 2.75rem;
+  opacity: 0.28;
+}
+
+.hero-slash-3 {
+  right: 12%;
+  top: 8%;
+  width: 1.5rem;
+  height: 80%;
+  opacity: 0.18;
+}
+
+.hero-photo-stage {
+  position: relative;
+  min-height: 22rem;
+}
+
+.hero-photo-stage img {
+  display: block;
+  width: 100%;
+  height: 22rem;
+  object-fit: cover;
+  object-position: 55% 18%;
+}
+
+.hero-photo-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #070807 0%, rgba(7, 8, 7, 0.55) 18%, transparent 42%),
+    linear-gradient(180deg, #070807 0%, transparent 22%),
+    linear-gradient(0deg, #070807 0%, transparent 16%);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .hero-photo-stage {
+    min-height: 100%;
+  }
+
+  .hero-photo-stage img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-position: 58% 32%;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.75rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.tech {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
