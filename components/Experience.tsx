@@ -22,14 +22,15 @@ const experienceData: Experience[] = [
     company: 'CepsAI',
     location: 'Abuja, Nigeria',
     companyUrl: 'https://phonenix-api.vercel.app/',
-    // TODO: confirm whether CepsAI is still current ("Present") or has an end date
-    period: 'May 2025 – Present',
+    period: 'March 2025 – Present',
     points: [
+      'Fine-tuned and deployed LLMs using LoRA/PEFT on domain-specific datasets for healthcare and fintech enterprises; deployed as SageMaker endpoints with monitoring and auto-scaling.',
       'Built and trained AI models from scratch, including fine-tuning and quantization of language models for optimized deployment.',
-      'Designed and deployed custom AI assistants for education, fintech, and healthcare sectors leveraging OpenAI APIs and fine-tuned language models.',
+      'Built end-to-end AI automation workflows orchestrating LLM agents with enterprise platforms (CRMs, ERPs, email, messaging APIs), eliminating high-volume repetitive processes.',
+      'Delivered tailored AI agents for education, fintech, and healthcare clients, each with enterprise API integrations, authentication, and production-ready FastAPI backends.',
       'Architected intelligent chatbots with advanced semantic search using LlamaIndex and vector database integrations.',
       'Developed real-time voice AI agents utilizing LiveKit for conversational interfaces.',
-      'Engineered production-ready API solutions with FastAPI, including authentication and rate limiting.',
+      'Conducted AI feasibility studies and prototyped agentic applications, validating technical approaches before full-scale enterprise deployment.',
     ],
   },
   {
