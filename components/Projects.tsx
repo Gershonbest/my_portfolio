@@ -48,10 +48,10 @@ const projectsData: Project[] = [
     category: 'Agents',
   },
   {
-    title: 'Phonenix AI Voice Agent',
+    title: 'CepsAI',
     technologies: 'LiveKit, FastAPI, OpenAI Realtime API, WebRTC, Twilio',
     description: 'Real-time voice telephony agent for natural conversations, with low-latency audio processing and streaming responses.',
-    liveDemoUrl: 'https://www.phonenix.ai',
+    liveDemoUrl: 'https://phonenix-api.vercel.app/',
     // TODO: add a public repo URL if one exists
     category: 'Agents',
   },
@@ -116,10 +116,10 @@ const projectsData: Project[] = [
 const filters: Array<'All' | ProjectCategory> = ['All', 'Venture', 'Production AI', 'Open Source', 'Agents'];
 
 const ProjectCard: React.FC<{ item: Project }> = ({ item }) => (
-  <article className="flex flex-col rounded-lg bg-surface p-5 ring-1 ring-inset ring-line">
-    <p className="text-xs text-muted">{item.category}</p>
-    <h3 className="mt-1 font-medium text-ink">{item.title}</h3>
-    <p className="mt-2 flex-1 text-[15px] leading-6">{item.description}</p>
+  <article className="border-t border-line py-7">
+    <p className="text-sm text-muted">{item.category}</p>
+    <h3 className="mt-1 font-display text-xl font-medium text-ink">{item.title}</h3>
+    <p className="mt-2 text-[15px] leading-7">{item.description}</p>
     <div className="mt-4">
       <TechList items={item.technologies.split(', ')} />
     </div>
@@ -156,7 +156,7 @@ const Projects: React.FC = () => {
 
   return (
     <Section id="projects" title="Projects">
-      <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
+      <div className="mb-2 flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filter projects by category">
         {filters.map((item) => {
           const active = filter === item;
           return (
@@ -165,10 +165,10 @@ const Projects: React.FC = () => {
               type="button"
               aria-pressed={active}
               onClick={() => setFilter(item)}
-              className={`rounded-full px-3 py-1.5 text-sm ${
+              className={`border-b pb-1 text-sm ${
                 active
-                  ? 'bg-accent text-accent-fg'
-                  : 'bg-surface text-ink ring-1 ring-inset ring-line hover:text-accent'
+                  ? 'border-accent text-ink'
+                  : 'border-transparent text-muted hover:text-ink'
               }`}
             >
               {item}
@@ -176,7 +176,7 @@ const Projects: React.FC = () => {
           );
         })}
       </div>
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid sm:grid-cols-2 sm:gap-x-10">
         {visible.map((project) => (
           <ProjectCard key={project.title} item={project} />
         ))}

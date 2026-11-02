@@ -3,12 +3,16 @@ import { CloseIcon, MenuIcon } from './Icons';
 import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
+  { name: 'Work', href: '#projects' },
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Contact', href: '#contact' },
+];
+
+const mobileLinks = [
+  ...navLinks,
   { name: 'Education', href: '#education' },
   { name: 'Publications', href: '#publications' },
-  { name: 'Contact', href: '#contact' },
 ];
 
 const Header: React.FC = () => {
@@ -41,45 +45,51 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-paper ${
-        scrolled ? 'border-line' : 'border-transparent'
+      className={`sticky top-0 z-50 border-b ${
+        scrolled ? 'border-line bg-paper text-ink' : 'border-transparent bg-transparent text-white'
       }`}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4 md:px-8">
-        <a href="#top" className="shrink-0 font-serif text-lg text-ink" onClick={handleNavClick}>
-          Gershon Omoraka
+      <div className="flex items-center gap-4 px-6 py-4 md:px-10 lg:px-12">
+        <a
+          href="#top"
+          className="shrink-0 font-display text-xl font-extrabold tracking-tight text-nvidia"
+          onClick={handleNavClick}
+        >
+          GO
         </a>
+        <span className="hidden h-5 w-px bg-current opacity-20 sm:block" aria-hidden="true" />
 
         <nav className="hidden lg:block" aria-label="Primary">
-          <ul className="flex items-center gap-5">
+          <ul className="flex items-center gap-7">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={handleNavClick}
-                  className="text-sm text-muted hover:text-ink"
+                  className={`text-sm font-medium ${
+                    scrolled ? 'text-muted hover:text-ink' : 'text-white/70 hover:text-white'
+                  }`}
                 >
                   {link.name}
                 </a>
               </li>
             ))}
-            <li className="flex items-center gap-3">
-              <ThemeToggle />
-              <a
-                href="mailto:gershblocks@gmail.com"
-                className="rounded-md bg-accent px-3.5 py-2 text-sm font-medium text-accent-fg hover:bg-[var(--accent-hover)]"
-              >
-                Email me
-              </a>
-            </li>
           </ul>
         </nav>
 
-        <div className="flex items-center gap-1 lg:hidden">
+        <div className="ml-auto flex items-center gap-2">
+          <a
+            href="#contact"
+            onClick={handleNavClick}
+            className="hidden items-center gap-2 rounded-full border border-nvidia bg-[#070807]/80 px-3.5 py-1.5 text-sm font-medium text-nvidia sm:inline-flex"
+          >
+            <span className="h-2 w-2 rounded-full bg-nvidia" aria-hidden="true" />
+            Available for Work
+          </a>
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink"
+            className="inline-flex h-10 w-10 items-center justify-center lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -91,9 +101,9 @@ const Header: React.FC = () => {
       </div>
 
       {open && (
-        <nav id="mobile-nav" className="border-t border-line bg-paper px-6 py-4 lg:hidden" aria-label="Mobile">
+        <nav id="mobile-nav" className="border-t border-line bg-paper px-6 py-4 text-ink lg:hidden" aria-label="Mobile">
           <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => (
+            {mobileLinks.map((link) => (
               <li key={link.name}>
                 <a href={link.href} onClick={handleNavClick} className="block py-1 text-ink">
                   {link.name}

@@ -12,7 +12,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       type="button"
-      className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink hover:bg-surface"
+      className="inline-flex h-10 w-10 items-center justify-center text-current hover:text-accent"
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={() => setThemeState(toggleTheme())}
     >

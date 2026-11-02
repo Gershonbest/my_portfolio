@@ -1,55 +1,65 @@
 import React from 'react';
 import profileImage from '../profile_dp.webp';
-import { GithubIcon, LinkedInIcon } from './Icons';
+import { ArrowIcon } from './Icons';
+
+const chips = ['Python', 'Agentic AI', 'RAG', 'MLOps'];
 
 const Hero: React.FC = () => {
   return (
-    <section id="top" className="mx-auto max-w-5xl px-6 pb-16 pt-12 md:px-8 md:pb-24 md:pt-20">
-      <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-16">
-        <img
-          src={profileImage}
-          alt="Portrait of Gershon Omoraka"
-          width={144}
-          height={144}
-          className="h-28 w-28 rounded-full object-cover ring-1 ring-line md:h-36 md:w-36"
-        />
-        <div>
-          <h1 className="font-serif text-4xl tracking-tight text-ink sm:text-5xl">
-            Gershon Omoraka
+    <section id="top" className="hero-shell min-h-screen md:-mt-[4.75rem]">
+      <div className="hero-slash" aria-hidden="true" />
+      <div className="hero-slash hero-slash-2" aria-hidden="true" />
+      <div className="hero-slash hero-slash-3" aria-hidden="true" />
+
+      <div className="relative z-10 grid min-h-screen items-stretch md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+        <div className="flex max-w-2xl flex-col justify-center px-6 pb-10 pt-24 md:px-10 md:pb-16 lg:px-12">
+          <p className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] text-white/55">
+            <span className="h-px w-10 bg-nvidia" aria-hidden="true" />
+            AI ENGINEER · FOUNDER · CTO
+          </p>
+          <h1 className="font-display mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Building <span className="text-nvidia">Intelligence.</span>
+            <br />
+            Engineering <span className="text-nvidia">Impact.</span>
           </h1>
-          <p className="mt-2 text-lg text-ink">AI/ML Engineer | Co-founder &amp; CTO at Orheo</p>
-          <p className="mt-5 max-w-xl text-[17px] leading-7">
-            I take AI systems from prototype to production: speech and document pipelines, voice agents, and multi-agent systems built for real-world load.
+          <p className="mt-6 max-w-xl text-base leading-7 text-white/75 sm:text-lg">
+            I build AI agents, intelligent systems, and production-ready ML applications.
           </p>
-          <p className="mt-4 inline-flex rounded-full bg-surface px-3 py-1 text-sm text-ink ring-1 ring-line">
-            Open to roles in applied AI, ML infrastructure and MLOps
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="mailto:gershblocks@gmail.com"
-              className="inline-flex items-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg hover:bg-[var(--accent-hover)]"
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full bg-nvidia px-5 py-2.5 text-sm font-semibold text-nvidia-ink hover:bg-[var(--accent-hover)]"
             >
-              Email me
+              Explore My Work
+              <ArrowIcon className="h-4 w-4" />
             </a>
             <a
-              href="https://linkedin.com/in/gershon-omoraka-478058177"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="inline-flex items-center gap-2 text-sm text-ink hover:text-accent"
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full border border-nvidia px-5 py-2.5 text-sm font-semibold text-white hover:bg-nvidia/10"
             >
-              <LinkedInIcon className="h-4 w-4" />
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/Gershonbest"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="inline-flex items-center gap-2 text-sm text-ink hover:text-accent"
-            >
-              <GithubIcon className="h-4 w-4" />
-              GitHub
+              Let&apos;s Connect
+              <ArrowIcon className="h-4 w-4" />
             </a>
           </div>
+          <ul className="mt-8 flex flex-wrap gap-2.5" aria-label="Focus areas">
+            {chips.map((chip) => (
+              <li
+                key={chip}
+                className="rounded-full border border-white/12 bg-white/5 px-3.5 py-1.5 text-sm text-white/80"
+              >
+                {chip}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="hero-photo-stage">
+          <img
+            src={profileImage}
+            alt="Gershon Omoraka working at a laptop"
+            width={1600}
+            height={1383}
+          />
         </div>
       </div>
     </section>

@@ -43,3 +43,9 @@ export const MoonIcon: React.FC<IconProps> = (props) => (
     <path strokeLinecap="round" d="M20 14.5A8.5 8.5 0 1111.5 4 7 7 0 0020 14.5z" />
   </svg>
 );
+
+export const ArrowIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" {...props}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+  </svg>
+);

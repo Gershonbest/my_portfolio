@@ -7,8 +7,7 @@ const experienceData: Experience[] = [
     role: 'Co-founder & CTO',
     company: 'Orheo',
     location: 'Abuja, Nigeria',
-    // TODO: confirm Orheo start date
-    period: 'TODO – Present',
+    period: 'June 2026 – Present',
     companyUrl: 'https://www.orheo.com',
     points: [
       'Built the AI-powered appointment management platform for service businesses across Africa.',
@@ -20,9 +19,10 @@ const experienceData: Experience[] = [
   },
   {
     role: 'AI Research & Solutions',
-    company: 'Phonenix AI',
+    company: 'CepsAI',
     location: 'Abuja, Nigeria',
-    // TODO: confirm whether Phonenix AI is still current ("Present") or has an end date
+    companyUrl: 'https://phonenix-api.vercel.app/',
+    // TODO: confirm whether CepsAI is still current ("Present") or has an end date
     period: 'May 2025 – Present',
     points: [
       'Built and trained AI models from scratch, including fine-tuning and quantization of language models for optimized deployment.',
@@ -48,7 +48,7 @@ const experienceData: Experience[] = [
 ];
 
 const ExperienceCard: React.FC<{ item: Experience }> = ({ item }) => (
-  <article className="grid gap-2 sm:grid-cols-12 sm:gap-8">
+  <article className="grid gap-2 border-t border-line py-8 first:border-t-0 first:pt-0 last:pb-0 sm:grid-cols-12 sm:gap-8">
     <p className="text-sm text-muted sm:col-span-4">{item.period}</p>
     <div className="sm:col-span-8">
       <h3 className="text-base font-medium text-ink">
@@ -67,11 +67,9 @@ const ExperienceCard: React.FC<{ item: Experience }> = ({ item }) => (
         )}
       </h3>
       <p className="mt-1 text-sm">{item.location}</p>
-      <ul className="mt-3 space-y-2 text-[15px] leading-6">
+      <ul className="mt-3 space-y-2 text-[15px] leading-7">
         {item.points.map((point) => (
-          <li key={point} className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent">
-            {point}
-          </li>
+          <li key={point}>{point}</li>
         ))}
       </ul>
     </div>
@@ -81,7 +79,7 @@ const ExperienceCard: React.FC<{ item: Experience }> = ({ item }) => (
 const Experience: React.FC = () => {
   return (
     <Section id="experience" title="Experience">
-      <div className="flex flex-col gap-10">
+      <div>
         {experienceData.map((item) => (
           <ExperienceCard key={`${item.company}-${item.role}`} item={item} />
         ))}

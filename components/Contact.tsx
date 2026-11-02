@@ -21,7 +21,7 @@ const Contact: React.FC = () => {
             <dt className="text-sm font-medium text-ink sm:col-span-4">{item.label}</dt>
             <dd className="text-[15px] sm:col-span-8">
               {item.href ? (
-                <a href={item.href} className="text-accent hover:text-ink" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer noopener' : undefined}>
+                <a href={item.href} className="text-ink underline decoration-line underline-offset-4 hover:text-accent hover:decoration-accent" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer noopener' : undefined}>
                   {item.value}
                 </a>
               ) : (
