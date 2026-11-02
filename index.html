@@ -1,27 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gershon Omoraka | AI/ML Engineer</title>
+    <meta name="description" content="Gershon Omoraka is an AI/ML Engineer and co-founder & CTO of Orheo. He takes AI systems from prototype to production: speech and document pipelines, voice agents, and multi-agent systems." />
+    <!-- TODO: set the canonical URL, og:url, and absolute og:image / twitter:image URLs to the production domain -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Gershon Omoraka | AI/ML Engineer" />
+    <meta property="og:description" content="AI/ML Engineer and co-founder & CTO of Orheo. Speech and document pipelines, voice agents, and multi-agent systems built for real-world load." />
+    <meta property="og:image" content="/og.webp" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Gershon Omoraka | AI/ML Engineer" />
+    <meta name="twitter:description" content="AI/ML Engineer and co-founder & CTO of Orheo. Speech and document pipelines, voice agents, and multi-agent systems built for real-world load." />
+    <meta name="twitter:image" content="/og.webp" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = stored ? stored === 'dark' : true;
+          if (dark) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
+            colors: {
+              paper: 'var(--paper)',
+              surface: 'var(--surface)',
+              ink: 'var(--ink)',
+              muted: 'var(--muted)',
+              line: 'var(--line)',
+              accent: 'var(--accent)',
+              'accent-soft': 'var(--accent-soft)',
+              'accent-fg': 'var(--accent-fg)',
+            },
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            animation: {
-              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
+              sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+              serif: ['Source Serif 4', 'Georgia', 'serif'],
             },
           },
         },
@@ -29,19 +52,10 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body class="bg-black text-zinc-400">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body class="bg-paper text-muted antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

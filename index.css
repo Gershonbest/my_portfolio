@@ -1,0 +1,216 @@
+:root {
+  color-scheme: light;
+  --paper: #e2ddd4;
+  --surface: #ebe7de;
+  --ink: #1c1a16;
+  --muted: #5c574e;
+  --line: #c8c0b4;
+  --accent: #2e4a46;
+  --accent-hover: #243c38;
+  --accent-fg: #f0ebe2;
+  --accent-soft: #d3dbd6;
+  --wash: rgba(46, 74, 70, 0.1);
+
+  --tech-ochre-bg: #efe0c0;
+  --tech-ochre-fg: #5c4314;
+  --tech-ochre-bd: #e0c98a;
+  --tech-pine-bg: #d5e0d4;
+  --tech-pine-fg: #2a4a32;
+  --tech-pine-bd: #b7c9b4;
+  --tech-emerald-bg: #d3e8dc;
+  --tech-emerald-fg: #1f4a3a;
+  --tech-emerald-bd: #a9d0be;
+  --tech-teal-bg: #d2e4e4;
+  --tech-teal-fg: #1d4648;
+  --tech-teal-bd: #a8ccce;
+  --tech-plum-bg: #e4d7e6;
+  --tech-plum-fg: #4a2f52;
+  --tech-plum-bd: #cbb4d0;
+  --tech-steel-bg: #d6dee8;
+  --tech-steel-fg: #2a3f55;
+  --tech-steel-bd: #b4c3d4;
+  --tech-rust-bg: #ead6cc;
+  --tech-rust-fg: #5a3228;
+  --tech-rust-bd: #d4b0a4;
+  --tech-slate-bg: #d6dce6;
+  --tech-slate-fg: #2c3848;
+  --tech-slate-bd: #b5c0ce;
+  --tech-wine-bg: #e6d4d6;
+  --tech-wine-fg: #4a2c34;
+  --tech-wine-bd: #d0b0b6;
+  --tech-copper-bg: #e8d8c8;
+  --tech-copper-fg: #4a3828;
+  --tech-copper-bd: #d4bba4;
+  --tech-indigo-bg: #d8d6e8;
+  --tech-indigo-fg: #32304a;
+  --tech-indigo-bd: #b8b4d0;
+  --tech-walnut-bg: #e4d9cc;
+  --tech-walnut-fg: #3f3428;
+  --tech-walnut-bd: #d0c0ac;
+  --tech-cyan-bg: #d0e4e8;
+  --tech-cyan-fg: #1e4048;
+  --tech-cyan-bd: #a8cdd4;
+  --tech-sage-bg: #dce4d6;
+  --tech-sage-fg: #2e4030;
+  --tech-sage-bd: #b8c8b0;
+  --tech-apricot-bg: #eddcc8;
+  --tech-apricot-fg: #4a3824;
+  --tech-apricot-bd: #dcc4a4;
+}
+
+html.dark {
+  color-scheme: dark;
+  --paper: #161513;
+  --surface: #1f1d1a;
+  --ink: #e8e3d8;
+  --muted: #a39c8f;
+  --line: #322f2a;
+  --accent: #b7c9b4;
+  --accent-hover: #c9d8c6;
+  --accent-fg: #161513;
+  --accent-soft: #24302c;
+  --wash: rgba(183, 201, 180, 0.08);
+
+  --tech-ochre-bg: #3a3018;
+  --tech-ochre-fg: #e6d09a;
+  --tech-ochre-bd: #5a4a22;
+  --tech-pine-bg: #1e3224;
+  --tech-pine-fg: #c5dcc8;
+  --tech-pine-bd: #34543c;
+  --tech-emerald-bg: #17362c;
+  --tech-emerald-fg: #b7e0cc;
+  --tech-emerald-bd: #2c5648;
+  --tech-teal-bg: #173438;
+  --tech-teal-fg: #b4dce0;
+  --tech-teal-bd: #2c5558;
+  --tech-plum-bg: #322038;
+  --tech-plum-fg: #e0c6e4;
+  --tech-plum-bd: #4e3860;
+  --tech-steel-bg: #1e2c3c;
+  --tech-steel-fg: #c4d4e6;
+  --tech-steel-bd: #364a60;
+  --tech-rust-bg: #3c241e;
+  --tech-rust-fg: #ecc8ba;
+  --tech-rust-bd: #5c3c34;
+  --tech-slate-bg: #222830;
+  --tech-slate-fg: #c8d2e0;
+  --tech-slate-bd: #3a4654;
+  --tech-wine-bg: #3a2228;
+  --tech-wine-fg: #ecc8ce;
+  --tech-wine-bd: #5a3840;
+  --tech-copper-bg: #3a2c20;
+  --tech-copper-fg: #ebcfb6;
+  --tech-copper-bd: #5a4634;
+  --tech-indigo-bg: #242238;
+  --tech-indigo-fg: #ccc8e8;
+  --tech-indigo-bd: #3e3c58;
+  --tech-walnut-bg: #32281e;
+  --tech-walnut-fg: #e4d4c2;
+  --tech-walnut-bd: #504436;
+  --tech-cyan-bg: #163038;
+  --tech-cyan-fg: #b4dce4;
+  --tech-cyan-bd: #2c5058;
+  --tech-sage-bg: #243028;
+  --tech-sage-fg: #d0dcc8;
+  --tech-sage-bd: #3c4c40;
+  --tech-apricot-bg: #3a2c1c;
+  --tech-apricot-fg: #f0d4b4;
+  --tech-apricot-bd: #5a4630;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--muted);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background:
+    radial-gradient(1100px 480px at 8% -8%, var(--wash), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, var(--wash), transparent 50%),
+    var(--paper);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1,
+h2,
+.font-serif {
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.75rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.tech {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.tech-ochre { background: var(--tech-ochre-bg); color: var(--tech-ochre-fg); border-color: var(--tech-ochre-bd); }
+.tech-pine { background: var(--tech-pine-bg); color: var(--tech-pine-fg); border-color: var(--tech-pine-bd); }
+.tech-emerald { background: var(--tech-emerald-bg); color: var(--tech-emerald-fg); border-color: var(--tech-emerald-bd); }
+.tech-teal { background: var(--tech-teal-bg); color: var(--tech-teal-fg); border-color: var(--tech-teal-bd); }
+.tech-plum { background: var(--tech-plum-bg); color: var(--tech-plum-fg); border-color: var(--tech-plum-bd); }
+.tech-steel { background: var(--tech-steel-bg); color: var(--tech-steel-fg); border-color: var(--tech-steel-bd); }
+.tech-rust { background: var(--tech-rust-bg); color: var(--tech-rust-fg); border-color: var(--tech-rust-bd); }
+.tech-slate { background: var(--tech-slate-bg); color: var(--tech-slate-fg); border-color: var(--tech-slate-bd); }
+.tech-wine { background: var(--tech-wine-bg); color: var(--tech-wine-fg); border-color: var(--tech-wine-bd); }
+.tech-copper { background: var(--tech-copper-bg); color: var(--tech-copper-fg); border-color: var(--tech-copper-bd); }
+.tech-indigo { background: var(--tech-indigo-bg); color: var(--tech-indigo-fg); border-color: var(--tech-indigo-bd); }
+.tech-walnut { background: var(--tech-walnut-bg); color: var(--tech-walnut-fg); border-color: var(--tech-walnut-bd); }
+.tech-cyan { background: var(--tech-cyan-bg); color: var(--tech-cyan-fg); border-color: var(--tech-cyan-bd); }
+.tech-sage { background: var(--tech-sage-bg); color: var(--tech-sage-fg); border-color: var(--tech-sage-bd); }
+.tech-apricot { background: var(--tech-apricot-bg); color: var(--tech-apricot-fg); border-color: var(--tech-apricot-bd); }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

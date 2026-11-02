@@ -1,26 +1,36 @@
 import React from 'react';
 import Section from './Section';
 
+const details = [
+  { label: 'Email', value: 'gershblocks@gmail.com', href: 'mailto:gershblocks@gmail.com' },
+  { label: 'Phone', value: '+234 916 617 6627', href: 'tel:+2349166176627' },
+  { label: 'Location', value: 'Abuja, Nigeria' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/gershon-omoraka', href: 'https://linkedin.com/in/gershon-omoraka-478058177' },
+  { label: 'GitHub', value: 'github.com/Gershonbest', href: 'https://github.com/Gershonbest' },
+];
+
 const Contact: React.FC = () => {
   return (
     <Section id="contact" title="Contact">
-      <h2 className="text-2xl font-bold text-zinc-200">Get In Touch</h2>
-      <p className="mt-4">
-        I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, my inbox is always open. I'll do my best to get back to you!
+      <p className="max-w-xl text-[17px] leading-7">
+        Open to roles and collaborations in applied AI, LLM systems, and production ML. The fastest way to reach me is email.
       </p>
-      <div className="mt-6">
-        <a 
-          href="mailto:gershblocks@gmail.com" 
-          className="inline-block rounded-md bg-sky-500 px-6 py-3 font-medium text-white hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-black transition-colors"
-        >
-          Say Hello
-        </a>
-      </div>
-      <div className="mt-8 text-sm">
-        <p><strong>Email:</strong> gershblocks@gmail.com</p>
-        <p><strong>Phone:</strong> +2349166176627</p>
-        <p><strong>Location:</strong> Abuja, Nigeria</p>
-      </div>
+      <dl className="mt-8 divide-y divide-line border-y border-line">
+        {details.map((item) => (
+          <div key={item.label} className="grid gap-1 py-3 sm:grid-cols-12 sm:gap-8">
+            <dt className="text-sm font-medium text-ink sm:col-span-4">{item.label}</dt>
+            <dd className="text-[15px] sm:col-span-8">
+              {item.href ? (
+                <a href={item.href} className="text-accent hover:text-ink" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer noopener' : undefined}>
+                  {item.value}
+                </a>
+              ) : (
+                item.value
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </Section>
   );
 };
